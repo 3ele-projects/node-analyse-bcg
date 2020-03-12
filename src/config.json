@@ -1,0 +1,7 @@
+{
+    "url": "env_url",
+    "port": "env_port",
+    "db": "env_db",
+    "username": "env_user",
+    "password": "env_password"
+}

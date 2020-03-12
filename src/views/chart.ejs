@@ -1,0 +1,48 @@
+<div class="form-header">
+    <h2>
+        <%= title %>
+    </h2>
+
+</div>
+
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            labels: ['Klicks', 'Suchbegriff', 'CPT', 'Position'],
+            datasets: [{
+                label: 'Suchanfrage',
+                data: [
+                    <% stream.forEach(function(data) { %> {
+                        x: <%= data.Position %>,
+                        y: <%= data.Impressionen %>
+
+                    },
+                    <% }) %> {
+                        x: 0,
+                        y: 0
+                    }
+                ]
+
+            }]
+        },
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                        if (label) {
+                            label += ': ';
+                        }
+                        label += Math.round(tooltipItem.yLabel * 100) / 100;
+                        return label;
+                    }
+                }
+            }
+        }
+    });
+</script>

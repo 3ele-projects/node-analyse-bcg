@@ -1,0 +1,41 @@
+<div class="form-header">
+    <h2>
+        <%= title %>
+    </h2>
+
+</div>
+
+
+<form id="uploadForm" enctype="multipart/form-data" action="analyze" method="post">
+    <input type="file" name="csv" />
+    <input type="submit" value="Upload Image" name="submit">
+    <span id="status"></span>
+</form>
+<script>
+    $(document).ready(function() {
+
+        $('#uploadForm').submit(function() {
+            $("#status").empty().text("File is uploading...");
+            $(this).ajaxSubmit({
+
+                error: function(xhr) {
+                    status('Error: ' + xhr.status);
+                },
+
+                success: function(response) {
+                    $("#status").empty().text(response);
+                    console.log(response);
+                }
+            });
+            //Very important line, it disable the page refresh.
+            return false;
+        });
+    });
+</script>
+
+<script>
+    // 3. call fileuploader instance
+    $('input:file').fileuploader({
+
+    });
+</script>

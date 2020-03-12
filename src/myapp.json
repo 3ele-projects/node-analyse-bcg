@@ -1,0 +1,8 @@
+
+{
+    'url': "https://example.de",
+    'port':443,
+    'db': "db",
+    'username': 'user',
+    'password': 'pw'
+}
