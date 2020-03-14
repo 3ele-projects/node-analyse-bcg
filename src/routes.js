@@ -98,11 +98,11 @@ router.post('/analyze', function(req, res) {
 
 
 
-                    const positions = new Function('a', 'amax', 'return a/amax ');
+                    const positions = new Function('a', 'amax', 'return a');
 
                     /* x =(-(Wert2)+max(Wert2))/Max(Wert2)  */
 
-                    const impressionen = new Function('a', 'amax', 'return -(a+amax)/amax ');
+                    const impressionen = new Function('a', 'amax', 'return a');
                     data_objects.push({
                         'Position': positions(data.Position, max_position),
                         'Impressionen': impressionen(data.Impressionen, max_imp),
